@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Events;
 
 public class SR_RenderCamera : MonoBehaviour
 {
@@ -10,8 +11,11 @@ public class SR_RenderCamera : MonoBehaviour
     private Texture2D destinationTexture;
     public int xOffset = 190;
     public int yOffset = 0;
-    public int screenshotWidth = 300;
+    public int screenshotWidth = 500;
     public int screenshotHeight;
+    public UnityEvent renderEvent;
+
+    private int fileNumber = 0;
 
 
     private void Start()
@@ -20,6 +24,7 @@ public class SR_RenderCamera : MonoBehaviour
         destinationTexture = new Texture2D(screenshotWidth, screenshotHeight, TextureFormat.RGB24, false);
 
         Camera.onPostRender += OnPostRenderCallback;
+
     }
 
     private void LateUpdate()
@@ -28,6 +33,11 @@ public class SR_RenderCamera : MonoBehaviour
         {
             isPerformingScreenGrab = true;
         }
+    }
+
+    public void performScreenGrab()
+    {
+        isPerformingScreenGrab = true;
     }
 
     void OnPostRenderCallback(Camera cam)
@@ -45,12 +55,14 @@ public class SR_RenderCamera : MonoBehaviour
                 destinationTexture.Apply();
 
                 var Bytes = destinationTexture.EncodeToPNG();
-                string filename = "Assets/test.png";
+                string filename = "Assets/test" + fileNumber +".png";
+                fileNumber++;
                 Debug.Log(filename);
                 File.WriteAllBytes(filename, Bytes);
 
 
                 isPerformingScreenGrab = false;
+                renderEvent.Invoke();
             }
 
         }

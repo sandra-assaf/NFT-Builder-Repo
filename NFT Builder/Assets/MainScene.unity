@@ -306,7 +306,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 48b4566395bf041a1870fa7593b2fe65, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -365,8 +365,22 @@ MonoBehaviour:
   components: {fileID: 1014926028}
   bodyRenderer: {fileID: 597221580}
   hairRenderer: {fileID: 187259773}
-  coll: {fileID: 0}
   updateCharacter: 0
+  renderEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1899191723}
+        m_TargetAssemblyTypeName: SR_RenderCamera, Assembly-CSharp
+        m_MethodName: performScreenGrab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1014926028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,7 +561,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0eb5fd8df8644856a6e546022ec7e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xOffset: 220
+  xOffset: 230
   yOffset: 0
-  screenshotWidth: 200
+  screenshotWidth: 500
   screenshotHeight: 0
+  renderEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1014926027}
+        m_TargetAssemblyTypeName: CharacterGenerator, Assembly-CSharp
+        m_MethodName: startUpdatingSprites
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
